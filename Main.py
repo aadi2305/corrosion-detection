@@ -16,4 +16,19 @@ def create_training_data(path, class_num):
         new_array = cv2.resize(img_array , (IMG_SIZE,IMG_SIZE))
         training_data.append([new_array, class_num])
 create_training_data(path_cor, 1)   
-create_training_data(path_non_cor, 0) 
+create_training_data(path_non_cor, 0)
+
+import random
+random.shuffle(training_data)
+
+x = []
+y = []
+
+for features, labels in training_data:
+    x.append(features)
+    y.append(labels)
+
+x = np.array(x).reshape(-1, IMG_SIZE, IMG_SIZE, 3)
+y= np.array(y)
+
+x = x / 255.0 
