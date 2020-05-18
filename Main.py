@@ -32,3 +32,13 @@ x = np.array(x).reshape(-1, IMG_SIZE, IMG_SIZE, 3)
 y= np.array(y)
 
 x = x / 255.0 
+
+from tensorflow.keras.layers import Flatten, Conv2D, MaxPooling2D, Dense, Activation
+from tensorflow.keras.models import Sequential
+
+
+model  = Sequential()
+
+model.add(Conv2D(64, (3,3), input_shape = x.shape[1:]))
+model.add(Activation("relu"))
+model.add(MaxPooling2D(pool_size = (2,2)))
