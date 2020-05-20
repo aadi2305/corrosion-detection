@@ -42,3 +42,23 @@ model  = Sequential()
 model.add(Conv2D(64, (3,3), input_shape = x.shape[1:]))
 model.add(Activation("relu"))
 model.add(MaxPooling2D(pool_size = (2,2)))
+
+model.add(Flatten())
+
+model.add(Dense(1))
+model.add(Activation("sigmoid"))
+
+model.compile(loss = "binary_crossentropy",
+              optimizer = "adam",
+              metrics = ["accuracy"])
+
+model.fit(x,y, batch_size = 28, epochs = 6,  validation_split = 0.3)
+
+def prepare(path):
+    IMG_SIZE = 200
+    img_array = cv2.imread(path, 1)
+    new_array = cv2.resize(img_array, (IMG_SIZE,IMG_SIZE) )
+    return new_array.reshape(-1, IMG_SIZE,IMG_SIZE,3)
+prediction = model.predict([prepare("12 (47).jpg")])
+print(prediction)
+
