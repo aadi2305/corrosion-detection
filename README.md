@@ -29,3 +29,6 @@ pip install numpy
 pip install tensorflow
 ```
 
+### Model
+This model is A Convolutional Neural Network with three convolution layers and two dense layers
+
